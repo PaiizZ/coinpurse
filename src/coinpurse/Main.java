@@ -3,13 +3,15 @@ package coinpurse;
 /**
  * Main (application) class creates objects and starts the application.
  *
- * @author your name
+ * @author Wanchanapon Thanwaranurak
+ *
  */
 public class Main {
     /**
-     *
+     * CAPACITY is a maximum size of purse.
      */
     private static int CAPACITY = 10;
+
     /**
      * Configure and start the application.
      *
@@ -19,6 +21,5 @@ public class Main {
         Purse purse = new Purse(CAPACITY);
         ConsoleDialog ui = new ConsoleDialog(purse);
         ui.run();
-
     }
 }

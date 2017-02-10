@@ -25,7 +25,7 @@ public class Purse {
      * Collection of objects in the purse.
      */
     //TODO declare a List of Coins named "money".
-    List<Coin> money = new ArrayList<>();
+    List<Coin> money ;
 
     /**
      * Create a purse with a specified capacity.
@@ -34,6 +34,7 @@ public class Purse {
      */
     public Purse(int capacity) {
         //TODO initialize the attributes of purse
+        money = new ArrayList<>();
         this.capacity = capacity;
     }
 
@@ -54,7 +55,7 @@ public class Purse {
      */
     public double getBalance() {
         double balance = 0;
-        for (Coin i : money) {
+        for (Coin i : this.money) {
             balance += i.getValue();
         }
         return balance;
@@ -80,7 +81,7 @@ public class Purse {
     public boolean isFull() {
         //TODO complete this method
         //TODO Don't Repeat Yourself: Avoid writing duplicate code.
-        if (money.size() == this.capacity) {
+        if (this.money.size() == this.capacity) {
             return true;
         }
         return false;
@@ -98,7 +99,7 @@ public class Purse {
         // if the purse is already full then can't insert anything.
 //      //TODO complete the insert method
         if (!isFull() && coin.getValue() > 0) {
-            money.add(coin);
+            this.money.add(coin);
             return true;
         }
         return false;
@@ -117,11 +118,10 @@ public class Purse {
         //TODO don't allow to withdraw amount < 0
         Collections.sort(money);
         Collections.reverse(money);
-        System.out.println(money);
+
         List<Coin> templist = new ArrayList<>(this.capacity);
         double num = 0, total = amount;
         if (this.getBalance() >= total) {
-
             for (int i = 0; num < total && i< money.size(); i++) {
                 if (money.get(i).getValue() <= amount) {
                     templist.add(money.get(i));
@@ -131,7 +131,7 @@ public class Purse {
 
             }
             if (num == total) {
-                for (int i = 0; i > templist.size(); i++) {
+                for (int i = 0; i < templist.size(); i++) {
                     money.remove(templist.get(i));
                 }
                 Coin[] array = new Coin[templist.size()]; // create the array
