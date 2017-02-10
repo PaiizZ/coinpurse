@@ -4,8 +4,8 @@ package coinpurse;
  * a coin with a monetary value and currency
  *
  * @author Wanchanapon Thanwaranurak
+ * @version 10/2/2017.
  */
-//TODO declare that Coin implements Comparable<Coin>
 public class Coin implements Comparable<Coin> {
     public static final String DEFAULT_CURRENCY = "Baht";
     /**
@@ -20,7 +20,7 @@ public class Coin implements Comparable<Coin> {
     /**
      * A coin with given value using the default currency.
      *
-     * @param value
+     * @param value of the coin.
      */
     public Coin(double value) {
         this.value = value;
@@ -30,25 +30,38 @@ public class Coin implements Comparable<Coin> {
     /**
      * A coin with given value and currency.
      *
-     * @param value
-     * @param currency
+     * @param value    of the coin.
+     * @param currency of course.
      */
     public Coin(double value, String currency) {
         this.value = value;
         this.currency = currency;
     }
 
-    //TODO Write a getValue() method and javadoc.
+    /**
+     * Return the value of the coin.
+     *
+     * @return the value of the coin.
+     */
     public double getValue() {
         return this.value;
     }
 
-    //TODO Write a getCurrency() method and javadoc.
+    /**
+     * Return the currency of course.
+     *
+     * @return currency of course.
+     */
     public String getCurrency() {
         return this.currency;
     }
 
-    //TODO Write an equals(Object) method.
+    /**
+     * Check between 2 things that are same.
+     *
+     * @param obj is a some object.
+     * @return true when equals, false when on equals.
+     */
     public boolean equals(Object obj) {
         if (obj != null) {
             if (this.getClass() == obj.getClass()) {
@@ -60,13 +73,12 @@ public class Coin implements Comparable<Coin> {
         return false;
     }
 
-//TODO Write a compareTo method and implement Comparable.
-
-    //TODO write a toString() method. See labsheet for what to return.
-    public String toString() {
-        return this.value + " " + this.currency;
-    }
-
+    /**
+     * Compare between 2 value that who more than.
+     *
+     * @param c is a coin.
+     * @return -1 if less than c , 1 if more than c and 0 if equal c
+     */
     @Override
     public int compareTo(Coin c) {
         if (this.value < c.getValue()) {
@@ -76,5 +88,15 @@ public class Coin implements Comparable<Coin> {
         }
         return 0;
     }
+
+    /**
+     * Print of the value of coin.
+     *
+     * @return word of value of the coin.
+     */
+    public String toString() {
+        return this.value + " " + this.currency;
+    }
+
 
 }
