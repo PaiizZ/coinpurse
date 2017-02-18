@@ -13,7 +13,7 @@ public class Coin implements Comparable<Coin> {
      */
     private final double value;
     /**
-     * The currency, of course.
+     * The currency, of coin.
      */
     private final String currency;
 
@@ -31,7 +31,7 @@ public class Coin implements Comparable<Coin> {
      * A coin with given value and currency.
      *
      * @param value    of the coin.
-     * @param currency of course.
+     * @param currency of coin.
      */
     public Coin(double value, String currency) {
         this.value = value;
@@ -48,9 +48,9 @@ public class Coin implements Comparable<Coin> {
     }
 
     /**
-     * Return the currency of course.
+     * Return the currency of coin.
      *
-     * @return currency of course.
+     * @return currency of coin.
      */
     public String getCurrency() {
         return this.currency;
