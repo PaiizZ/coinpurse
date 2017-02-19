@@ -1,20 +1,35 @@
 package coinpurse;
 
 /**
- * Created by PaiizZ on 2/18/2017 AD.
+ * BankNote is a banknote with a monetary value and currency.
+ *
+ * @author Wanchanapon Thanwaranurak.
+ * @version 18/2/2017 AD.
  */
 public class BankNote implements Valuable {
+
     /**
-     * Next IdBankNote of the nextSerialNumber
+     * Unique serial number starting from 1,000,000
      */
     private static long nextSerialNumber = 1000000;
     /**
-     * IdBankNote of the serialNumber
+     * Value of the bank note.
+     */
+    private double value;
+    /**
+     * The unique serial number
      */
     private long serialNumber;
-    private double value;
+    /**
+     * The currency, of bank note.
+     */
     private String currency;
 
+    /**
+     * Initialize a BankNote with given value.
+     *
+     * @param value is a value of the banknote.
+     */
     public BankNote(double value) {
         this.value = value;
         this.currency = Coin.DEFAULT_CURRENCY;
@@ -22,6 +37,12 @@ public class BankNote implements Valuable {
         BankNote.nextSerialNumber++;
     }
 
+    /**
+     * Initialize a BankNote with given value and currency.
+     *
+     * @param value is a value of the banknote.
+     * @param currency is a currency of the banknote.
+     */
     public BankNote(double value, String currency) {
         this.value = value;
         this.currency = currency;
@@ -29,20 +50,41 @@ public class BankNote implements Valuable {
         BankNote.nextSerialNumber++;
     }
 
+    /**
+     * Get a value from banknote.
+     *
+     * @return the vale of the banknote.
+     */
     @Override
     public double getValue() {
         return this.value;
     }
 
+    /**
+     * Get a currency from banknote.
+     *
+     * @return the currency of the banknote.
+     */
     @Override
     public String getCurrency() {
         return this.currency;
     }
 
+    /**
+     * Get serial number from a banknote.
+     *
+     * @return the serial number of the banknote.
+     */
     public long getSerial() {
         return this.serialNumber;
     }
 
+    /**
+     * Two banknote are equal if they have the same value and currency.
+     *
+     * @param obj is another Object to compare to this one.
+     * @return true if value and currency is same, false otherwise.
+     */
     public boolean equals(Object obj) {
         if (obj != null) {
             if (this.getClass() == obj.getClass()) {
@@ -54,6 +96,11 @@ public class BankNote implements Valuable {
         return false;
     }
 
+    /**
+     * Get a string representation of this Banknote.
+     *
+     * @return a string representation of the value, currency and serial number of the banknote.
+     */
     public String toString() {
         return String.format("%.0f-%s note [%d]", this.value, this.currency, this.serialNumber);
     }
