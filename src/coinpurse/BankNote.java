@@ -55,7 +55,7 @@ public class BankNote implements Valuable {
     }
 
     public String toString() {
-        return String.format("%.2f-%s note [%d]", this.value, this.currency, this.serialNumber);
+        return String.format("%.0f-%s note [%d]", this.value, this.currency, this.serialNumber);
     }
 
 

@@ -146,7 +146,7 @@ public class CoinUtil {
 /**
  * Class for comparing two Coins by currency.
  */
-class CompareByCurrency implements Comparator<Coin> {
+class CompareByCurrency implements Comparator<Valuable> {
 
     /**
      * Compare two coins by currency.
@@ -156,7 +156,7 @@ class CompareByCurrency implements Comparator<Coin> {
      * @return positive integer if c1 more than c2, negative integer if less than, else 0.
      */
     @Override
-    public int compare(Coin c1, Coin c2) {
+    public int compare(Valuable c1, Valuable c2) {
         return c1.getCurrency().compareTo(c2.getCurrency());
     }
 }

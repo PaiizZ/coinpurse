@@ -23,7 +23,7 @@ public class Purse {
     /**
      * Collection of objects in the purse.
      */
-    List<Coin> money;
+    private List<Valuable> money;
 
     /**
      * Create a purse with a specified capacity.
@@ -52,7 +52,7 @@ public class Purse {
      */
     public double getBalance() {
         double balance = 0;
-        for (Coin i : this.money) {
+        for (Valuable i : this.money) {
             balance += i.getValue();
         }
         return balance;
@@ -84,12 +84,13 @@ public class Purse {
      * The coin is only inserted if the purse has space for it
      * and the coin has positive value.  No worthless coins!
      *
-     * @param coin is a Coin object to insert into purse
+     * @param value is a Coin object to insert into purse
      * @return true if coin inserted, false if can't insert
      */
-    public boolean insert(Coin coin) {
-        if (!isFull() && coin.getValue() > 0) {
-            this.money.add(coin);
+    public boolean insert(Valuable value) {
+        if (value == null) return false;
+        if (!isFull() && value.getValue() > 0) {
+            this.money.add(value);
             return true;
         }
         return false;
@@ -104,11 +105,11 @@ public class Purse {
      * @return array of Coin objects for money withdrawn,
      * or null if cannot withdraw requested amount.
      */
-    public Coin[] withdraw(double amount) {
-        Collections.sort(money);
+    public Valuable[] withdraw(double amount) {
+        Collections.sort(money,new CompareByCurrency());
         Collections.reverse(money);
 
-        List<Coin> templist = new ArrayList<>(this.capacity);
+        List<Valuable> templist = new ArrayList<>(this.capacity);
         double num = 0, total = amount;
         if (this.getBalance() >= total) {
             for (int i = 0; num < total && i < money.size(); i++) {
@@ -120,10 +121,10 @@ public class Purse {
 
             }
             if (num == total) {
-                for (int i = 0; i < templist.size(); i++) {
-                    money.remove(templist.get(i));
+                for (Valuable x : templist){
+                    money.remove(x);
                 }
-                Coin[] array = new Coin[templist.size()]; // create the array
+                Valuable[] array = new Valuable[templist.size()]; // create the array
                 templist.toArray(array); // copy to array
                 return array;
             } else {
