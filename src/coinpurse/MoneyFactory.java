@@ -23,11 +23,12 @@ public abstract class MoneyFactory {
     }
 
     public static void setMoneyFactory() throws IOException {
-        FileInputStream file = new FileInputStream("/Users/PaiizZ/Documents/workspace/OOP2/CoinPurse/src/coinpurse/purse.properties");
-        ResourceBundle bundle = new PropertyResourceBundle(file);
+//        FileInputStream file = new FileInputStream("/Users/PaiizZ/Documents/workspace/OOP2/CoinPurse/src/purse.properties");
+//        ResourceBundle bundle = new PropertyResourceBundle(file);
+
+        ResourceBundle bundle = ResourceBundle.getBundle("purse");
         String classfactory = bundle.getString("moneyfactory");
         try {
-            Object o = Class.forName(classfactory).newInstance();
             moneyFactory = (MoneyFactory) Class.forName(classfactory).newInstance();
         } catch (ClassNotFoundException cce) {
             // the object could not be cast to type MoneyFactory
