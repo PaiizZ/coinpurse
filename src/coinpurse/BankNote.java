@@ -32,8 +32,8 @@ public class BankNote extends AbstractValuable {
      */
     public BankNote(double value) {
         super(value, Coin.DEFAULT_CURRENCY);
-        this.serialNumber = BankNote.nextSerialNumber;
         BankNote.nextSerialNumber++;
+        this.serialNumber = BankNote.nextSerialNumber;
     }
 
     /**
@@ -44,8 +44,8 @@ public class BankNote extends AbstractValuable {
      */
     public BankNote(double value, String currency) {
         super(value, currency);
-        this.serialNumber = BankNote.nextSerialNumber;
         BankNote.nextSerialNumber++;
+        this.serialNumber = BankNote.nextSerialNumber;
     }
 
 //    /**

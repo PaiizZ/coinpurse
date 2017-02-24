@@ -19,8 +19,10 @@ public abstract class AbstractValuable implements Valuable {
 //            return 1;
 //        }
 //        return 0;
-
-        return (this.value+"").compareTo(valuable.getValue()+"");
+        if (this.currency.equals(valuable.getCurrency()))
+            return (this.value + "").compareTo(valuable.getValue() + "");
+        else
+            return this.currency.compareTo(valuable.getCurrency());
     }
 
     public boolean equals(Object obj) {
