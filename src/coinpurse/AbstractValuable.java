@@ -13,12 +13,14 @@ public abstract class AbstractValuable implements Valuable {
     }
 
     public int compareTo(Valuable valuable) {
-        if (this.value < valuable.getValue()) {
-            return -1;
-        } else if (this.value > valuable.getValue()) {
-            return 1;
-        }
-        return 0;
+//        if (this.value < valuable.getValue()) {
+//            return -1;
+//        } else if (this.value > valuable.getValue()) {
+//            return 1;
+//        }
+//        return 0;
+
+        return (this.value+"").compareTo(valuable.getValue()+"");
     }
 
     public boolean equals(Object obj) {
