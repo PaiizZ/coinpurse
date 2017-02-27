@@ -11,9 +11,13 @@ import java.util.List;
  */
 public class ThaiMoneyFactory extends MoneyFactory {
     /**
+     * coinList are contain many kind of small coin in Thailand money.
+     */
+    List<Double> coinSatangList = Arrays.asList(0.25, 0.50);
+    /**
      * coinList are contain many kind of coin in Thailand money.
      */
-    List<Double> coinList = Arrays.asList(1.0, 2.0, 5.0, 10.0);
+    List<Double> coinBahtList = Arrays.asList(1.0, 2.0, 5.0, 10.0);
     /**
      * banknoteList are contain many kind of banknote in Thailand money.
      */
@@ -25,7 +29,8 @@ public class ThaiMoneyFactory extends MoneyFactory {
      */
     @Override
     public Valuable createMoney(double value) {
-        if (coinList.contains(value)) return new Coin(value, "Baht");
+        if (coinSatangList.contains(value)) return  new Coin(value*100,"Satang");
+        else if (coinBahtList.contains(value)) return new Coin(value, "Baht");
         else if (banknoteList.contains(value)) return new BankNote(value, "Baht");
         throw new IllegalArgumentException();
 
