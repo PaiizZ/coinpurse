@@ -63,8 +63,8 @@ public class ConsoleDialog {
             try {
                 double value = scanline.nextDouble();
                 valuable = moneyFactory.createMoney(value);
-            } catch (IllegalArgumentException ex){
-
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
             System.out.printf("Deposit %s... ", valuable.toString());
             boolean ok = purse.insert(valuable);

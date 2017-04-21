@@ -3,6 +3,7 @@ package coinpurse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * A coin purse contains coins.
@@ -14,7 +15,7 @@ import java.util.List;
  * @author Wanchanapon Thanwaranurak
  * @version 10/2/2017.
  */
-public class Purse {
+public class Purse extends Observable {
     /**
      * Capacity is maximum number of coins the purse can hold.
      * Capacity is set when the purse is created and cannot be changed.
@@ -89,11 +90,11 @@ public class Purse {
      */
     public boolean insert(Valuable value) {
         if (value == null) return false;
-        if (!isFull() && value.getValue() > 0) {
-            this.money.add(value);
-            return true;
-        }
-        return false;
+        if (isFull() || value.getValue() <= 0) return false;
+        money.add(value);
+        setChanged();
+        notifyObservers();
+        return true;
     }
 
     /**
@@ -106,7 +107,7 @@ public class Purse {
      * or null if cannot withdraw requested amount.
      */
     public Valuable[] withdraw(double amount) {
-        Collections.sort(money,new CompareByCurrency());
+        Collections.sort(money, new CompareByCurrency());
         Collections.reverse(money);
 
         List<Valuable> templist = new ArrayList<>(this.capacity);
@@ -120,14 +121,19 @@ public class Purse {
                 }
 
             }
+
             if (num == total) {
-                for (Valuable x : templist){
+                for (Valuable x : templist) {
                     money.remove(x);
                 }
                 Valuable[] array = new Valuable[templist.size()]; // create the array
                 templist.toArray(array); // copy to array
+                setChanged();
+                notifyObservers("withdraw" + total);
                 return array;
-            } else {
+            }
+
+            else {
                 return null;
             }
         }

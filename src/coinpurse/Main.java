@@ -19,7 +19,13 @@ public class Main {
      */
     public static void main(String[] args) {
         Purse purse = new Purse(CAPACITY);
+        PurseBalanceObserver purseBalanceObserver = new PurseBalanceObserver();
+        PurseStatusObserver purseStatusObserver = new PurseStatusObserver();
+        purse.addObserver(purseBalanceObserver);
+        purse.addObserver(purseStatusObserver);
         ConsoleDialog ui = new ConsoleDialog(purse);
+        purseBalanceObserver.run();
+        purseStatusObserver.run();
         ui.run();
     }
 }
