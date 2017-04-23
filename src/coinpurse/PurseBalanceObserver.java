@@ -6,37 +6,60 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by PaiizZ on 4/21/2017 AD.
+ * Graphic user interface to show the balance of item in purse.
+ *
+ * @author Wanchanapon Thanwaranurak
+ * @version 4/21/2017
  */
 public class PurseBalanceObserver extends JFrame implements Observer {
+    /**
+     * Size of font that show in GUI
+     */
     private static final int FONT_SIZE = 40;
-    private JTextArea textArea;
+    /**
+     * The label to show balance.
+     */
+    private JLabel labelBalance;
 
-    public PurseBalanceObserver(){
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    /**
+     * Constructor for PurseBalanceObserver.
+     */
+    public PurseBalanceObserver() {
+        super.setTitle("Purse Balance");
+        setBounds(0, 10, 800, 600);
+        super.setResizable(false);
+        super.setSize(250, 90);
         initComponents();
     }
 
-    private void initComponents(){
-        textArea = new JTextArea(1,5);
-        textArea.setFont( new Font(Font.DIALOG,Font.PLAIN,FONT_SIZE ));
-//        JScrollPane scrollPane = new JScrollPane(textArea);
-//        scrollPane.setVerticalScrollBarPolicy();
-        this.add(textArea);
-        this.pack();
+    /**
+     * Components for GUI.
+     */
+    private void initComponents() {
+        JPanel paneBalance = new JPanel();
+        labelBalance = new JLabel("0 Baht", JLabel.CENTER);
+        labelBalance.setFont(new Font(Font.DIALOG, Font.PLAIN, FONT_SIZE));
+        paneBalance.add(labelBalance);
+        super.add(paneBalance);
     }
 
-    public void run(){
-        initComponents();
+    /**
+     * Run this GUI.
+     */
+    public void run() {
         this.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * For update the balance of this purse.
+     */
     @Override
     public void update(Observable subject, Object info) {
-//        if (info != null)  textArea.append(info+"\n");
-        if (subject instanceof Purse){
+        if (info != null) System.out.println(info);
+        if (subject instanceof Purse) {
             Purse purse = (Purse) subject;
-            textArea.setText((int)purse.getBalance()+" Baht");
+            labelBalance.setText((int) purse.getBalance() + " Baht");
         }
     }
 }
