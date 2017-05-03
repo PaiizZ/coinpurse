@@ -116,36 +116,6 @@ public class Purse extends Observable {
 	 * or null if cannot withdraw requested amount.
 	 */
 	public Valuable[] withdraw(double amount) {
-		//        Collections.sort(money, new CompareByCurrency());
-		//        Collections.reverse(money);
-		//
-		//        List<Valuable> templist = new ArrayList<>(this.capacity);
-		//        double num = 0, total = amount;
-		//        if (this.getBalance() >= total) {
-		//            for (int i = 0; num < total && i < money.size(); i++) {
-		//                if (money.get(i).getValue() <= amount) {
-		//                    templist.add(money.get(i));
-		//                    num += money.get(i).getValue();
-		//                    amount -= money.get(i).getValue();
-		//                }
-		//
-		//            }
-		//
-		//            if (num == total) {
-		//                for (Valuable x : templist) {
-		//                    money.remove(x);
-		//                }
-		//                Valuable[] array = new Valuable[templist.size()]; // create the array
-		//                templist.toArray(array); // copy to array
-		//                setChanged();
-		//                notifyObservers("withdraw" + total);
-		//                return array;
-		//            }
-		//            else {
-		//                return null;
-		//            }
-		//        }
-		//        return null;
 		List<Valuable> list = this.strategy.withdraw(amount, money); // store money to list
 		if( list != null){
 			for (Valuable x : list) {
