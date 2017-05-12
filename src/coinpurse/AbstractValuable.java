@@ -38,7 +38,7 @@ public abstract class AbstractValuable implements Valuable {
      */
     public int compareTo(Valuable valuable) {
         if (this.currency.equals(valuable.getCurrency()))
-            return (this.value + "").compareTo(valuable.getValue() + "");
+            return (int) Math.signum(this.value - valuable.getValue());
         else
             return this.currency.compareTo(valuable.getCurrency());
     }
